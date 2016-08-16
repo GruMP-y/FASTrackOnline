@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Bulk Upload Assets";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<br />
+<div id="mainProfile" class="container-fluid col-lg-12">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h1 class="panel-title">Employee Assets</h1>
+        </div>
+    </div>
+    <br />
+    <a class="text-primary pull-right" href="@Url.Action("GetTemplate","Employee")" ><span class="glyphicon glyphicon-download"></span>Download Template</a>
+
+    @using (Html.BeginForm("UploadFile", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        <input type="file" name="FileUpload1" /><br />
+        <input type="submit" class="btn btn-default" name="Submit" id="Submit" value="Upload" />
+    }
+    <br />
+    <br />
+    </div>

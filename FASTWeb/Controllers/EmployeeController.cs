@@ -8,6 +8,9 @@ using FASTService.Model;
 using FASTService.Process;
 using FASTService.Enum;
 using FASTWeb.Models.Employee;
+using System.Web;
+using System.IO;
+
 namespace FASTWeb.Controllers
 {
     public class EmployeeController : Controller
@@ -182,6 +185,44 @@ namespace FASTWeb.Controllers
 
             return View(dashModel);
 
+        }
+
+        [HttpGet]
+        public ActionResult BulkUpload()
+        {
+            return View();
+        }
+
+        public ActionResult UploadFile()
+        {
+            foreach (string upload in Request.Files)
+            {
+                if (!(Request.Files[upload] != null && Request.Files[upload].ContentLength > 0)) continue;
+                string path = AppDomain.CurrentDomain.BaseDirectory + "uploads/";
+                string filename = Path.GetFileName(Request.Files[upload].FileName);
+
+                // If Upload folder is not yet existing, this code will create that directory.
+                if (!System.IO.Directory.Exists(path))
+                {
+                    System.IO.Directory.CreateDirectory(path);
+                }
+
+                Request.Files[upload].SaveAs(Path.Combine(path, filename));
+                // File is now Saved on the Upload folder of the the solution
+
+                // Add paring code here
+                
+                // Add bulk upload code here
+            }
+            return View("BulkUpload");
+        }
+
+        public FileResult GetTemplate()
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory + "Templates/SampleExcelTemplate.xlsx";
+            byte[] fileBytes = System.IO.File.ReadAllBytes(@path);
+            string fileName = "Template.xlsx";
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
     }
 

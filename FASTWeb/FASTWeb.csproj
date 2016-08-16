@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -349,6 +350,7 @@
     <Content Include="Views\AppAdmin\ViewAccessRights.cshtml" />
     <Content Include="Views\Home\DownloadPage.cshtml" />
     <Content Include="Views\Assignment\ManageAssignment.cshtml" />
+    <Content Include="Views\Employee\BulkUpload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
